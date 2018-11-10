@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primaryColor: '#ef6c00';
+$primaryLightColor: '#ff9d3f'; 
+$primaryDarkColor: '#b53d00'; 
+$secondaryColor: '#0277bd'; 
+$secondaryLightColor: '#58a5f0'; 
+$secondaryDarkColor: '#004c8c'; 
+$primaryTextColor: '#000000'; 
+$secondaryTextColor: '#ffffff'; 
+$app-primary:   mat-palette($mat-indigo);
+$app-accent:    mat-palette($mat-pink, A200, A100, A400);
+$app-warn:      mat-palette($mat-red);
+
+$app-theme: mat-light-theme(
+    $app-primary, 
+    $app-accent, 
+    $app-warn
+);
+
+.material-theme {
+    @include angular-material-theme($app-theme);
+  }
+
+
+
+
+html, 
+body, 
+app-root { 
+    height: 100%; 
+}
+body { 
+    margin: 0; 
+    font-family: 
+    Roboto, "Helvetica Neue", sans-serif; 
+}
