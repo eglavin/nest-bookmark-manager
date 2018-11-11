@@ -34,6 +34,9 @@ export class MongodbService {
   getBookmark(id: string): Observable<any> {
     return this.http.get('http://127.0.0.1:8081/api/bookmarks/' + id);
   }
+  getCategoryData(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8081/api/bookmark/categories');
+  }
 
   // Update
   updateBookmark(

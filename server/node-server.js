@@ -30,19 +30,32 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
     description: String,
     category: String
   });
+  var categorySchema = new Schema({
+    name: String,
+  });
 
   var BookmarkData = mongoose.model('bookmarks', bookmarksSchema);
+  var CategoryData = mongoose.model('categories', categorySchema);
 
 
 
 // Reads
   app.get('/api/bookmarks', function (req, res) {
     BookmarkData.find(function (err, bookmarks) {
-      if (err) {
+      if(err) {
         res.send(err)
       }
       res.json(bookmarks);
       console.log("Reading BookmarkData");
+    });
+  });
+  app.get('/api/bookmark/categories', function (req, res){
+    CategoryData.find( function (err, categories){
+      if(err) {
+        res.send(err)
+      }
+      res.send(categories);
+      console.log("Reading CategoryData");
     });
   });
 

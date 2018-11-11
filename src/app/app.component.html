@@ -6,36 +6,27 @@
                 <mat-icon>menu</mat-icon>
             </button>
         </span>
-
         <span class="toolbar-fill"></span>
-
         <span>
             Nest Bookmark Manager
         </span>
-        
         <span class="toolbar-fill"></span>
 
     </mat-toolbar>
 
     <mat-sidenav-container class="nest-container">
 
-
         <mat-sidenav #BookmarkCategories>
-
             <mat-toolbar color="secondary">
-
                 <span>Categories</span>
-
             </mat-toolbar>
-
+            <mat-list matRipple class="categories" *ngFor="let category of categoryDataSource">
+                <mat-list-item class="categories-name" *ngIf="category.name">{{ category.name }}</mat-list-item>
+            </mat-list>
         </mat-sidenav>
 
         <mat-sidenav-content>
-
-            <router-outlet>
-
-            </router-outlet>
-
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
 
     </mat-sidenav-container>

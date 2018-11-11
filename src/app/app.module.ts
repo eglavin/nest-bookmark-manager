@@ -11,6 +11,9 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatTableModule,
+  MatListModule,
+  MatRippleModule,
+  MatCardModule,
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +44,10 @@ import { MongodbService } from './_services/mongodb.service';
     MatCheckboxModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule,
+    MatRippleModule,
+    MatCardModule
   ],
   exports: [
 
