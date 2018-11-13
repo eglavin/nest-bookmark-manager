@@ -1,0 +1,9 @@
+.add-bookmark-card mat-card-content {
+    display: flex;
+    flex-direction: column;
+  
+    form > * {
+        width: 100%;
+        margin: 10px;
+    }
+}

@@ -6,7 +6,6 @@ import { MongodbService } from './_services/mongodb.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
-
 })
 export class AppComponent implements OnInit {
 
@@ -14,7 +13,7 @@ export class AppComponent implements OnInit {
 
   events: string[] = [];
   opened: boolean;
-  categoryDataSource: any = [];
+  public categoryDataSource: any = [];
 
   constructor(
     private mdbs: MongodbService

@@ -14,6 +14,12 @@ import {
   MatListModule,
   MatRippleModule,
   MatCardModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule,
+  MatDialogModule,
+  MatBottomSheetModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +39,8 @@ import { MongodbService } from './_services/mongodb.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -47,7 +53,13 @@ import { MongodbService } from './_services/mongodb.service';
     MatTableModule,
     MatListModule,
     MatRippleModule,
-    MatCardModule
+    MatCardModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatBottomSheetModule
   ],
   exports: [
 

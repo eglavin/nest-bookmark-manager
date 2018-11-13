@@ -1,25 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource, MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 
+import { BookmarkAddComponent } from '../bookmark-add/bookmark-add.component';
 import { MongodbService } from '../_services/mongodb.service';
-import { Bookmark } from '../_models/bookmark.model';
+
+export interface Bookmark {
+  title: string;
+  href: string;
+  description: string;
+  category: string;
+}
+
 
 @Component({
   selector: 'app-bookmark-details',
   templateUrl: './bookmark-details.component.html',
   styleUrls: ['./bookmark-details.component.scss']
 })
+
 export class BookmarkDetailsComponent implements OnInit {
 
-  bookmarksDataSource: any = [];
+  bookmarksDataSource: Bookmark[];
   categoryDataSource: any = [];
 
-  displayedColumns: string[] = ['select', 'title', 'href', 'description', 'category'];
-  selection = new SelectionModel<Bookmark>(true, []);
+  displayedColumns: string[] = ['title', 'href', 'description', 'category'];
+  dataSourceSort = new MatTableDataSource(this.bookmarksDataSource);
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private mdbs: MongodbService
+    private mdbs: MongodbService,
+    private bottomSheet: MatBottomSheet
   ) {}
+
   ngOnInit() {
     this.mdbs.getBookmarkData().subscribe(data => {
       this.bookmarksDataSource = data;
@@ -27,19 +40,11 @@ export class BookmarkDetailsComponent implements OnInit {
     this.mdbs.getCategoryData().subscribe(data => {
       this.categoryDataSource = data;
     });
+
+    this.dataSourceSort.sort = this.sort;
   }
 
-
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.bookmarksDataSource.data.length;
-    return numSelected === numRows;
+  addBookmark(): void {
+    this.bottomSheet.open(BookmarkAddComponent);
   }
-
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.bookmarksDataSource.data.forEach(row => this.selection.select(row));
-  }
-
 }
