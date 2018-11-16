@@ -22,6 +22,6 @@ export class BookmarkAddComponent implements OnInit {
   }
 
   cancel(): void {
-    this.dialogRef.close();
+    //this.dialogRef.close();
   }
 }
