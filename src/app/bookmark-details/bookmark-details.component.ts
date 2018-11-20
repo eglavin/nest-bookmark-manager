@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource, MatBottomSheet, MatBottomSheetRef } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material';
 
+// Imports Components
 import { BookmarkAddComponent } from '../bookmark-add/bookmark-add.component';
 import { BookmarkDetailsUpdateComponent } from '../bookmark-details-update/bookmark-details-update.component';
+
+// Imports Mongo DB Service
 import { MongodbService } from '../_services/mongodb.service';
 
-export interface Bookmark {
-  title: string;
-  href: string;
-  description: string;
-  category: string;
-}
-
+// Imports Data Model
+import { Bookmark } from '../_models/bookmark.model';
+import { Category } from '../_models/category.model';
 
 @Component({
   selector: 'app-bookmark-details',
@@ -23,19 +22,17 @@ export class BookmarkDetailsComponent implements OnInit {
 
   constructor(
     private mdbs: MongodbService,
-    public bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet
   ) {}
 
+  // Variables
   bookmarksDataSource: Bookmark[];
-  categoryDataSource: any = [];
+  categoryDataSource: Category[];
 
+  // Initializes Table Titles
   displayedColumns: string[] = ['title', 'href', 'description', 'category', 'options'];
-  dataSourceSort = new MatTableDataSource(this.bookmarksDataSource);
 
-  @ViewChild(MatSort) sort: MatSort;
-
-  
-
+  // Reads and Initializes variables with data from mongodb.service
   ngOnInit() {
     this.mdbs.getBookmarkData().subscribe(data => {
       this.bookmarksDataSource = data;
@@ -43,24 +40,29 @@ export class BookmarkDetailsComponent implements OnInit {
     this.mdbs.getCategoryData().subscribe(data => {
       this.categoryDataSource = data;
     });
-
-    this.dataSourceSort.sort = this.sort;
   }
 
+  // Opens Create bottomsheet
   addBookmark(): void {
     this.bottomSheet.open(BookmarkAddComponent);
   }
 
-  edit(): void {
-    this.bottomSheet.open(BookmarkDetailsUpdateComponent,{
+  // Opens Update bottomsheet and posts the id of the current item
+  edit(id: string): void {
+    this.bottomSheet.open(BookmarkDetailsUpdateComponent, {
       data: {
-        myString: "s",
+        id: id,
       }
     });
   }
 
-  Delete(id: string) {
+  // Deletes item from databse
+  delete(id: string) {
     this.mdbs.deleteBookmark(id).subscribe();
-    this.ngOnInit();
+    this.reload();
+  }
+
+  reload(): void {
+    window.location.reload();
   }
 }

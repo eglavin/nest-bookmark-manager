@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   MatIconModule,
   MatButtonModule,
-  MatCheckboxModule,
   MatSidenavModule,
   MatToolbarModule,
   MatTableModule,
@@ -23,11 +22,14 @@ import {
   MatMenuModule
 } from '@angular/material';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookmarkDetailsComponent } from './bookmark-details/bookmark-details.component';
 import { BookmarkDetailsUpdateComponent } from './bookmark-details-update/bookmark-details-update.component';
 import { BookmarkAddComponent } from './bookmark-add/bookmark-add.component';
+import { SidebarNavigationComponent } from './sidebar-navigation/sidebar-navigation.component';
+
+import { AppRoutingModule } from './app-routing.module';
+
 import { MongodbService } from './_services/mongodb.service';
 
 @NgModule({
@@ -36,19 +38,18 @@ import { MongodbService } from './_services/mongodb.service';
     BookmarkDetailsComponent,
     BookmarkDetailsUpdateComponent,
     BookmarkAddComponent,
-
+    SidebarNavigationComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AppRoutingModule,
 
     MatIconModule,
     MatButtonModule,
-    MatCheckboxModule,
     MatSidenavModule,
     MatToolbarModule,
     MatTableModule,
@@ -63,12 +64,8 @@ import { MongodbService } from './_services/mongodb.service';
     MatBottomSheetModule,
     MatMenuModule
   ],
-  exports: [
-
-  ],
   providers: [
     MongodbService,
-
   ],
   entryComponents: [
     BookmarkAddComponent

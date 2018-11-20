@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MongodbService } from './_services/mongodb.service';
-
 
 @Component({
   selector: 'app-root',
@@ -9,20 +7,8 @@ import { MongodbService } from './_services/mongodb.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'Data-Rep-Project';
+  constructor() {}
 
-  events: string[] = [];
-  opened: boolean;
-  public categoryDataSource: any = [];
-
-  constructor(
-    private mdbs: MongodbService
-  ) { }
-
-  ngOnInit() {
-    this.mdbs.getCategoryData().subscribe(data => {
-      this.categoryDataSource = data;
-    });
-  }
+  ngOnInit() {}
 
 }

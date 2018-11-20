@@ -1,0 +1,8 @@
+.edit-bookmark-card {
+    @media screen and (max-width:800px) {
+        mat-card-content {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

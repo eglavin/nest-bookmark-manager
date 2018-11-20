@@ -6,8 +6,6 @@ const bodyParser    = require("body-parser");
 const mongoose      = require('mongoose'); // Mongoose Import
 const cors          = require('cors');
 
-
-
 // CORS Error Fix
 app.use(cors());
 
@@ -39,26 +37,10 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
 
 
 
-// Reads
-  app.get('/api/bookmarks', function (req, res) {
-    BookmarkData.find(function (err, bookmarks) {
-      if(err) {
-        res.send(err)
-      }
-      res.json(bookmarks);
-      console.log("Reading BookmarkData");
-    });
+// Load Nest Home Page
+  app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/dist/nest/index.html'));
   });
-  app.get('/api/bookmark/categories', function (req, res){
-    CategoryData.find( function (err, categories){
-      if(err) {
-        res.send(err)
-      }
-      res.send(categories);
-      console.log("Reading CategoryData");
-    });
-  });
-
 
 
 // Create
@@ -73,8 +55,36 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
   });
 
 
+// Reads
+  app.get('/api/bookmarks', function (req, res) {
+    BookmarkData.find(function (err, bookmarks) {
+      if(err) {
+        res.send(err)
+      }
+      res.json(bookmarks);
+    });
+  });
+  app.get('/api/bookmarks/:_id', function (req, res) {
+    BookmarkData.find({ '_id': req.params._id },
+      function (err, bookmarks) {
+        if(err) {
+          res.send(err)
+        }
+        res.json(bookmarks);
+      });
+  });
+  app.get('/api/bookmark/categories', function (req, res) {
+    CategoryData.find( function (err, categories){
+      if(err) {
+        res.send(err)
+      }
+      res.send(categories);
+    });
+  });
+
+
 // Update
-  app.put('/api/bookmarks/:id', function(req,res){
+  app.put('/api/bookmarks/:id', function(req,res) {
     BookmarkData.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
       if (err) {
         return next(err);
@@ -85,16 +95,11 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
   })
 
 
-
 // Delete
-  app.delete('/api/bookmarks/:id', function(req,res){
+  app.delete('/api/bookmarks/:id', function(req,res) {
     BookmarkData.deleteOne({ _id: req.params.id }, 
-      function (err) { 
-        console.log("Error Deleting BookmarkData"); 
-      }
-    );
+      function (err) {});
   })
-
 
 
 // Server Start

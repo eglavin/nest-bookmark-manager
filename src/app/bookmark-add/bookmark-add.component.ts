@@ -1,7 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-
+// Imports Mongo DB Service
 import { MongodbService } from '../_services/mongodb.service';
+
+// Imports Data Model
+import { Category } from '../_models/category.model';
 
 @Component({
   selector: 'app-bookmark-add',
@@ -10,9 +15,11 @@ import { MongodbService } from '../_services/mongodb.service';
 })
 export class BookmarkAddComponent implements OnInit {
 
-  categoryDataSource: any = [];
+  // Variables
+  categoryDataSource: Category[];
 
   constructor(
+    private router: Router,
     private mdbs: MongodbService,
   ) { }
 
@@ -20,5 +27,15 @@ export class BookmarkAddComponent implements OnInit {
     this.mdbs.getCategoryData().subscribe(data => {
       this.categoryDataSource = data;
     });
+  }
+
+  // Adds bookmark via service
+  onAddBookmark(form: NgForm) {
+    this.mdbs.addBookmark(form.value.title, form.value.href, form.value.description, form.value.category).subscribe(() => {
+      this.router.navigate(['/?']);
+    });
+  }
+  reload(): void {
+    window.location.reload();
   }
 }

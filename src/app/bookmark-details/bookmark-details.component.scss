@@ -1,14 +1,22 @@
-span.toolbar-fill {
-  flex: 1 1 auto;
-}
-.button {
-  margin: 0 10px;
-}
-mat-card {
-  margin: 1em;
-  
-  table {
-    width: 100%;
+mat-toolbar{
+  .button {
+    margin: 0 10px;
+  }
+  span.toolbar-fill {
+    flex: 1 1 auto;
   }
 }
-  
+mat-card {
+  margin: .5em;
+  table {
+    width: 100%;
+     a.link mat-icon{
+      float: right;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px
+    }
+  }
+
+}

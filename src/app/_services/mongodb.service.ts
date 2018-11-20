@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+// Imports Data Model
 import { Bookmark } from '../_models/bookmark.model';
 
 @Injectable({
@@ -9,7 +10,9 @@ import { Bookmark } from '../_models/bookmark.model';
 })
 export class MongodbService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) {}
 
   // Create
   addBookmark(
@@ -24,7 +27,7 @@ export class MongodbService {
       description: description,
       category: category
     };
-    return this.http.post('http://127.0.0.1:8081/api/posts', bookmark);
+    return this.http.post('http://127.0.0.1:8081/api/bookmarks', bookmark);
   }
 
   // Read
@@ -52,7 +55,7 @@ export class MongodbService {
       description: description,
       category: category
     };
-    return this.http.put('http://127.0.0.1:8081/api/posts/' + id, bookmark);
+    return this.http.put('http://127.0.0.1:8081/api/bookmarks/' + id, bookmark);
   }
 
   // Delete

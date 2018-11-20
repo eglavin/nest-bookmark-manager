@@ -1,50 +1,60 @@
 <mat-card class="edit-bookmark-card">
 
-  <mat-card-header>
-      <mat-card-title>Edit Bookmark</mat-card-title>
-  </mat-card-header>
+    <mat-card-header>
 
-  <mat-card-content>
+        <mat-card-title>Edit Bookmark</mat-card-title>
 
-      <form (submit)="onEditBookmark(postForm)" #postForm="ngForm">
+        <mat-card-subtitle>Fill out the form below to edit the selected bookmark.</mat-card-subtitle>
 
-          <mat-form-field>
+    </mat-card-header>
 
-              <input matInput placeholder="Name" type="text" name="title" ngModel required autofocus minlength="3" #title="ngModel">
+    <form (submit)="onEditBookmark(EditBookmark)" #EditBookmark="ngForm">
 
-          </mat-form-field>
+        <mat-card-content>
 
-          <mat-form-field>
+            <mat-form-field>
+                    
+                <input matInput placeholder="Name" type="text" name="title" ngModel={{bookmarksDataSource[0].title}} minlength="3" #title="ngModel" required autofocus>
+                <mat-error *ngIf="title.invalid">Please enter a name for the bookmark.</mat-error>
 
-              <input matInput placeholder="Url" type="text" name="href" ngModel required minlength="5" #href="ngModel">
+            </mat-form-field>
 
-          </mat-form-field>
+            <mat-form-field>
 
-          <mat-form-field>
+                <input matInput placeholder="Url" type="text" name="href" ngModel={{bookmarksDataSource[0].href}} minlength="5" #href="ngModel" required>
+                <mat-error *ngIf="href.invalid">Please enter a URL.</mat-error>
 
-              <textarea matInput placeholder="Description" rows="1" ngModel required minlength="5" maxlength="256" #description="ngModel"></textarea>
+            </mat-form-field>
 
-          </mat-form-field>
+            <mat-form-field>
 
-          <mat-form-field>
+                <input matInput placeholder="Description" type="text" name="description" ngModel={{bookmarksDataSource[0].description}} maxlength="256" #description="ngModel">
+                <mat-error *ngIf="description.invalid">Please enter a description of the URL.</mat-error>
 
-              <mat-select placeholder="Category">
-                  <span *ngFor="let category of categoryDataSource">
-                      <mat-option value="{{ category._id }}">
-                          {{ category.name }}
-                      </mat-option>
-                  </span>
-              </mat-select>
+            </mat-form-field>
 
-          </mat-form-field>
+            <mat-form-field>
 
-      </form>
+                <mat-select placeholder="Category" name="category" ngModel={{bookmarksDataSource[0].category}} #category="ngModel">
 
-  </mat-card-content>
+                    <mat-option *ngFor="let category of categoryDataSource" value="{{ category._id }}">
+                        {{ category.name }}
+                    </mat-option>
 
-  <mat-card-actions>
-      <button mat-button >Add Bookmark</button>
-      <button mat-button (click)="cancel()">Cancel</button>
-  </mat-card-actions>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+
+            <button mat-button type="submit">Edit Bookmark</button>
+
+            <button mat-button type="reset">Clear</button>
+
+        </mat-card-actions>
+
+    </form>
 
 </mat-card>
