@@ -19,7 +19,8 @@ import {
   MatSelectModule,
   MatInputModule,
   MatDialogModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatMenuModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,7 +60,8 @@ import { MongodbService } from './_services/mongodb.service';
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatMenuModule
   ],
   exports: [
 
@@ -67,6 +69,9 @@ import { MongodbService } from './_services/mongodb.service';
   providers: [
     MongodbService,
 
+  ],
+  entryComponents: [
+    BookmarkAddComponent
   ],
   bootstrap: [
     AppComponent,

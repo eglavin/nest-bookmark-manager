@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+
 
 import { MongodbService } from '../_services/mongodb.service';
 
@@ -12,16 +13,12 @@ export class BookmarkAddComponent implements OnInit {
   categoryDataSource: any = [];
 
   constructor(
-    private mdbs: MongodbService
+    private mdbs: MongodbService,
   ) { }
 
   ngOnInit() {
     this.mdbs.getCategoryData().subscribe(data => {
       this.categoryDataSource = data;
     });
-  }
-
-  cancel(): void {
-    //this.dialogRef.close();
   }
 }
