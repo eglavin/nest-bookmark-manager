@@ -26,7 +26,8 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
     title: String,
     href: String,
     description: String,
-    category: String
+    category: String,
+    catname: String,
   });
   var categorySchema = new Schema({
     name: String,
@@ -50,6 +51,7 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
         href : req.body.href,
         description : req.body.description,
         category : req.body.category,
+        catname : req.body.catname,
     })
     console.log("Inserting BookmarkData");
   });

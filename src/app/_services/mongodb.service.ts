@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Imports Data Model
-import { Bookmark } from '../_models/bookmark.model';
+import { Bookmark, Bookmarkadd } from '../_models/bookmark.model';
+import { componentFactoryName } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,15 @@ export class MongodbService {
     title: string,
     href: string,
     description: string,
-    category: string
+    category: string,
+    catname: string,
   ): Observable<any> {
-    const bookmark: Bookmark = {
+    const bookmark: Bookmarkadd = {
       title: title,
       href: href,
       description: description,
-      category: category
+      category: category,
+      catname: catname,
     };
     return this.http.post('http://127.0.0.1:8081/api/bookmarks', bookmark);
   }
@@ -43,19 +46,21 @@ export class MongodbService {
 
   // Update
   updateBookmark(
-    id: string,
+    _id: string,
     title: string,
     href: string,
     description: string,
-    category: string
+    category: string,
+    catname: string,
   ): Observable<any> {
-    const bookmark: Bookmark = {
+    const bookmark: Bookmarkadd = {
       title: title,
       href: href,
       description: description,
-      category: category
+      category: category,
+      catname: catname
     };
-    return this.http.put('http://127.0.0.1:8081/api/bookmarks/' + id, bookmark);
+    return this.http.put('http://127.0.0.1:8081/api/bookmarks/' + _id, bookmark);
   }
 
   // Delete

@@ -19,7 +19,8 @@ import {
   MatInputModule,
   MatDialogModule,
   MatBottomSheetModule,
-  MatMenuModule
+  MatMenuModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -62,7 +63,8 @@ import { MongodbService } from './_services/mongodb.service';
     MatInputModule,
     MatDialogModule,
     MatBottomSheetModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
   ],
   providers: [
     MongodbService,

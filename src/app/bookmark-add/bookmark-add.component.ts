@@ -16,8 +16,8 @@ import { Category } from '../_models/category.model';
 export class BookmarkAddComponent implements OnInit {
 
   // Variables
-  categoryDataSource: Category[];
-
+  categoryDataSource: any[];
+  catname: string[];
   constructor(
     private router: Router,
     private mdbs: MongodbService,
@@ -31,11 +31,9 @@ export class BookmarkAddComponent implements OnInit {
 
   // Adds bookmark via service
   onAddBookmark(form: NgForm) {
-    this.mdbs.addBookmark(form.value.title, form.value.href, form.value.description, form.value.category).subscribe(() => {
-      this.router.navigate(['/?']);
-    });
+    var catname = this.categoryDataSource.find(x=>x._id == form.value.category).name;
+    // console.log(catname);
+    this.mdbs.addBookmark(form.value.title, form.value.href, form.value.description, form.value.category, catname).subscribe(() => { });
   }
-  reload(): void {
-    window.location.reload();
-  }
+  
 }
