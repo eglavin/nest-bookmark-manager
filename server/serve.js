@@ -38,9 +38,9 @@ mongoose.connect(MLabURL, { useNewUrlParser: true });
 
 
 
-// Load Nest Home Page
+// Root Domain
   app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/dist/nest/index.html'));
+    res.send("Hi there! Open the Angular app in another browser window to view my content!")
   });
 
 
