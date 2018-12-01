@@ -1,17 +1,31 @@
 # Nest Bookmark Manager
+
 ## Data Representation and Querying Project
+
 ###### Galway Mayo Institute of Technology 2018
 
 ### Installation:
+
 > To run the project front-end use the following commands
+
 ```
 git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Project
 cd GMIT-Y4-DRQ-Project
 npm i
 npm start
 ```
+
 > To start the Server backend please open another Terminal and run 
+
 ```
 cd GMIT-Y4-DRQ-Project/Server/
 node serve.js
 ```
+
+After running the previous commands you will be able to open a browser window and view the site at the link [http://localhost:4200/](http://localhost:4200/)
+
+### Development Notes
+
+Browser Used whilest development 
+
+> Mozilla Firefox 
