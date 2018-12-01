@@ -43,3 +43,6 @@ After running the previous commands you will be able to open a browser window an
 > Browser Used during development 
 
 - Mozilla Firefox 
+
+### Issues 
+Find any problems with the app feel free to send in a report in the Issues tab.
