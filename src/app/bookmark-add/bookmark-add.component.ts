@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 // Imports Mongo DB Service
 import { MongodbService } from '../_services/mongodb.service';
-
-// Imports Data Model
-import { Category } from '../_models/category.model';
 
 @Component({
   selector: 'app-bookmark-add',
@@ -19,7 +15,6 @@ export class BookmarkAddComponent implements OnInit {
   categoryDataSource: any[];
   catname: string[];
   constructor(
-    private router: Router,
     private mdbs: MongodbService,
   ) { }
 
@@ -31,9 +26,8 @@ export class BookmarkAddComponent implements OnInit {
 
   // Adds bookmark via service
   onAddBookmark(form: NgForm) {
-    var catname = this.categoryDataSource.find(x=>x._id == form.value.category).name;
-    // console.log(catname);
+    const catname = this.categoryDataSource.find(x => x._id === form.value.category).name;
     this.mdbs.addBookmark(form.value.title, form.value.href, form.value.description, form.value.category, catname).subscribe(() => { });
   }
-  
+
 }

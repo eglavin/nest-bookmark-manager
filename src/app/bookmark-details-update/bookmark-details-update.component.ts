@@ -7,7 +7,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { MongodbService } from '../_services/mongodb.service';
 
 // Imports Data Model
-import { Bookmark } from '../_models/bookmark.model'
+import { Bookmark } from '../_models/bookmark.model';
 import { Category } from '../_models/category.model';
 
 @Component({
@@ -39,10 +39,15 @@ export class BookmarkDetailsUpdateComponent implements OnInit {
 
   // Sends update to the service
   onEditBookmark(form: NgForm) {
-    var catname = this.categoryDataSource.find(x=>x._id == form.value.category).name;
+    const catname = this.categoryDataSource.find(x => x._id === form.value.category).name;
 
-    this.mdbs.updateBookmark(this.bookmarksDataSource[0]._id, form.value.title, form.value.href,
-      form.value.description, form.value.category, catname).subscribe();
-      this.router.navigate(['/?']);
+    this.mdbs.updateBookmark(
+      this.bookmarksDataSource[0]._id,
+      form.value.title,
+      form.value.href,
+      form.value.description,
+      form.value.category,
+      catname
+      ).subscribe();
   }
 }

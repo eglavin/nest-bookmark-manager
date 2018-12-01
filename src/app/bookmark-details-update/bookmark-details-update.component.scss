@@ -1,8 +1,14 @@
-.edit-bookmark-card {
-    @media screen and (max-width:800px) {
-        mat-card-content {
-            display: flex;
-            flex-direction: column;
-        }
+@media screen and (max-width:800px) {
+  .edit-bookmark-card {
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
     }
+  }
+}
+
+@media screen and (min-width:800px) {
+  .edit-bookmark-card {
+    margin: 1.5em 1em;
+  }
 }

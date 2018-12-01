@@ -1,33 +1,29 @@
-<div class="app-container">
+<div class="page-theme app-container">
 
-    <mat-toolbar color="primary">
+  <mat-toolbar color="primary">
 
-        <button mat-icon-button (click)="BookmarkCategories.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
+    <button mat-icon-button (click)="BookmarkCategories.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-        <span class="toolbar-fill"></span>
-        <span>
-            Nest Bookmark Manager
-        </span>
-        <span class="toolbar-fill"></span>
+    <span class="toolbar-fill"></span>
+    <span>
+      Nest Bookmark Manager
+    </span>
+    <span class="toolbar-fill"></span>
 
-    </mat-toolbar>
+  </mat-toolbar>
 
-    <mat-sidenav-container>
+  <mat-sidenav-container>
 
-        <mat-sidenav #BookmarkCategories>
+    <mat-sidenav #BookmarkCategories>
+      <app-sidebar-navigation></app-sidebar-navigation>
+    </mat-sidenav>
 
-            <app-sidebar-navigation></app-sidebar-navigation>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
 
-        </mat-sidenav>
-
-        <mat-sidenav-content>
-
-            <router-outlet></router-outlet>
-
-        </mat-sidenav-content>
-
-    </mat-sidenav-container>
+  </mat-sidenav-container>
 
 </div>

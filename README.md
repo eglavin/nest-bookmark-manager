@@ -1,6 +1,18 @@
 # Data Representation and Querying Project
+###### Galway Mayo Institute of Technology 2018
+
 ## Nest Bookmark Manager
 
-To run the project, use use the command "git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Project" to download the files to your computer.
-Then using nodes package manager use "npm i" to install the dependancies needed for this project.
-Then to run the server "cd" into the server folder and use "node serve.js" to start the node server.
+> Installation:
+To run the project front-end use the following commands
+```
+git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Project
+cd GMIT-Y4-DRQ-Project
+npm i
+npm start
+```
+To start the Server backend please open another Terminal and run 
+```
+cd GMIT-Y4-DRQ-Project/Server/
+node serve.js
+```

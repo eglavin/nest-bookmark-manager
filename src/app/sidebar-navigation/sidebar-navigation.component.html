@@ -1,11 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z3">
-
   <span>Categories</span>
-
 </mat-toolbar>
 
 <mat-list matRipple class="categories" *ngFor="let category of categoryDataSource">
-
   <mat-list-item class="categories-name" (click)="filter(category.name)" *ngIf="category.name">{{ category.name }}</mat-list-item>
-
 </mat-list>

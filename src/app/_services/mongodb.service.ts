@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Imports Data Model
-import { Bookmark, Bookmarkadd } from '../_models/bookmark.model';
-import { componentFactoryName } from '@angular/compiler';
+import { Bookmarkadd } from '../_models/bookmark.model';
 
 @Injectable({
   providedIn: 'root'

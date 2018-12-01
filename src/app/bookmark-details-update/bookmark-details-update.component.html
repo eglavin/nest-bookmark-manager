@@ -1,60 +1,48 @@
-<mat-card class="edit-bookmark-card">
+<mat-card class="edit-bookmark-card mat-elevation-z3">
 
-    <mat-card-header>
+  <mat-card-header>
+    <mat-card-title>Edit Bookmark</mat-card-title>
+    <mat-card-subtitle>Fill out the form below to edit the selected bookmark.</mat-card-subtitle>
+  </mat-card-header>
 
-        <mat-card-title>Edit Bookmark</mat-card-title>
+  <form (submit)="onEditBookmark(EditBookmark)" #EditBookmark="ngForm">
 
-        <mat-card-subtitle>Fill out the form below to edit the selected bookmark.</mat-card-subtitle>
+    <mat-card-content>
 
-    </mat-card-header>
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" name="title" ngModel={{bookmarksDataSource[0].title}} minlength="3"
+          #title="ngModel" required autofocus>
+        <mat-error *ngIf="title.invalid">Please enter a name for the bookmark.</mat-error>
+      </mat-form-field>
 
-    <form (submit)="onEditBookmark(EditBookmark)" #EditBookmark="ngForm">
+      <mat-form-field>
+        <input matInput placeholder="Url" type="text" name="href" ngModel={{bookmarksDataSource[0].href}} minlength="5"
+          #href="ngModel" required>
+        <mat-error *ngIf="href.invalid">Please enter a URL.</mat-error>
+      </mat-form-field>
 
-        <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Description" type="text" name="description" ngModel={{bookmarksDataSource[0].description}}
+          maxlength="256" #description="ngModel">
+        <mat-error *ngIf="description.invalid">Please enter a description of the URL.</mat-error>
+      </mat-form-field>
 
-            <mat-form-field>
-                    
-                <input matInput placeholder="Name" type="text" name="title" ngModel={{bookmarksDataSource[0].title}} minlength="3" #title="ngModel" required autofocus>
-                <mat-error *ngIf="title.invalid">Please enter a name for the bookmark.</mat-error>
+      <mat-form-field>
+        <mat-select placeholder="Category" name="category" ngModel={{bookmarksDataSource[0].category}} #category="ngModel">
+          <mat-option *ngFor="let category of categoryDataSource" value="{{ category._id }}">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-            </mat-form-field>
+    </mat-card-content>
 
-            <mat-form-field>
+    <mat-card-actions align="end">
 
-                <input matInput placeholder="Url" type="text" name="href" ngModel={{bookmarksDataSource[0].href}} minlength="5" #href="ngModel" required>
-                <mat-error *ngIf="href.invalid">Please enter a URL.</mat-error>
+      <button mat-button type="submit">Edit Bookmark</button>
+      <button mat-button type="reset">Clear</button>
 
-            </mat-form-field>
+    </mat-card-actions>
 
-            <mat-form-field>
-
-                <input matInput placeholder="Description" type="text" name="description" ngModel={{bookmarksDataSource[0].description}} maxlength="256" #description="ngModel">
-                <mat-error *ngIf="description.invalid">Please enter a description of the URL.</mat-error>
-
-            </mat-form-field>
-
-            <mat-form-field>
-
-                <mat-select placeholder="Category" name="category" ngModel={{bookmarksDataSource[0].category}} #category="ngModel">
-
-                    <mat-option *ngFor="let category of categoryDataSource" value="{{ category._id }}">
-                        {{ category.name }}
-                    </mat-option>
-
-                </mat-select>
-
-            </mat-form-field>
-
-        </mat-card-content>
-
-        <mat-card-actions align="end">
-
-            <button mat-button type="submit">Edit Bookmark</button>
-
-            <button mat-button type="reset">Clear</button>
-
-        </mat-card-actions>
-
-    </form>
-
+  </form>
 </mat-card>
