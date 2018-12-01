@@ -15,7 +15,7 @@
 __To run the project front-end use the following commands__
 
 ```
-git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Project
+git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Nest
 cd GMIT-Y4-DRQ-Project
 npm i
 npm start
