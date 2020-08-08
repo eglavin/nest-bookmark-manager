@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatBottomSheet } from "@angular/material";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
 
 // Imports Components
 import { BookmarkAddComponent } from "../bookmark-add/bookmark-add.component";
@@ -42,7 +43,7 @@ export class BookmarkDetailsComponent implements OnInit {
   ];
 
   // Paginator Init
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   addBookmark(): void {
     this.bottomSheet.open(BookmarkAddComponent);
