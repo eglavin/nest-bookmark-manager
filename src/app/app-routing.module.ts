@@ -1,40 +1,36 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 // Import Components
-import { BookmarkDetailsComponent } from './bookmark-details/bookmark-details.component';
-import { BookmarkAddComponent } from './bookmark-add/bookmark-add.component';
-import { BookmarkDetailsUpdateComponent } from './bookmark-details-update/bookmark-details-update.component';
+import { BookmarkDetailsComponent } from "./bookmark-details/bookmark-details.component";
+import { BookmarkAddComponent } from "./bookmark-add/bookmark-add.component";
+import { BookmarkDetailsUpdateComponent } from "./bookmark-details-update/bookmark-details-update.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: BookmarkDetailsComponent,
-    pathMatch: 'full'
+    pathMatch: "full",
   },
   {
-    path: 'add',
+    path: "add",
     component: BookmarkAddComponent,
-    pathMatch: 'full'
+    pathMatch: "full",
   },
   {
-    path: 'edit',
+    path: "edit",
     component: BookmarkDetailsUpdateComponent,
-    pathMatch: 'full'
+    pathMatch: "full",
   },
   {
-    path: '**',
+    path: "**",
     component: BookmarkDetailsComponent,
-    pathMatch: 'full'
-  }
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

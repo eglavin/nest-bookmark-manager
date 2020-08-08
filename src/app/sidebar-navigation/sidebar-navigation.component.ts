@@ -1,36 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 // Imports Mongo DB Service
-import { MongodbService } from '../_services/mongodb.service';
-import { CategoryService } from '../_services/category.service';
+import { MongodbService } from "../_services/mongodb.service";
+import { CategoryService } from "../_services/category.service";
 
 // Imports Data Model
-import { Category } from '../_models/category.model';
+import { Category } from "../_models/category.model";
 
 @Component({
-  selector: 'app-sidebar-navigation',
-  templateUrl: './sidebar-navigation.component.html',
+  selector: "app-sidebar-navigation",
+  templateUrl: "./sidebar-navigation.component.html",
 })
 export class SidebarNavigationComponent implements OnInit {
-
   public categoryDataSource: Category[];
-  category: String;
+  private category: String;
 
-  constructor(
-    private mdbs: MongodbService,
-    private cat: CategoryService,
-  ) { }
+  constructor(private mdbs: MongodbService, private cat: CategoryService) {}
 
   ngOnInit() {
-    this.mdbs.getCategoryData().subscribe(data => {
+    this.mdbs.getCategoryData().subscribe((data) => {
       this.categoryDataSource = data;
     });
-    this.cat.pickedcat.subscribe(message => this.category = message);
+    this.cat.pickedcat.subscribe((message) => (this.category = message));
   }
 
-
   filter(category: string) {
-    console.log(category);
     this.cat.changeCategory(category);
   }
 }
