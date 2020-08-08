@@ -1,18 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 // Imports Data Model
-import { Bookmarkadd } from '../_models/bookmark.model';
+import { BookmarkAdd } from "../_models/bookmark.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MongodbService {
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  baseURL: string = "http://127.0.0.1:8081";
 
   // Create
   addBookmark(
@@ -20,27 +19,27 @@ export class MongodbService {
     href: string,
     description: string,
     category: string,
-    catname: string,
+    catname: string
   ): Observable<any> {
-    const bookmark: Bookmarkadd = {
+    const bookmark: BookmarkAdd = {
       title: title,
       href: href,
       description: description,
       category: category,
       catname: catname,
     };
-    return this.http.post('http://127.0.0.1:8081/api/bookmarks', bookmark);
+    return this.http.post(`${this.baseURL}/api/bookmarks`, bookmark);
   }
 
   // Read
   getBookmarkData(): Observable<any> {
-    return this.http.get('http://127.0.0.1:8081/api/bookmarks');
+    return this.http.get(`${this.baseURL}/api/bookmarks`);
   }
   getBookmark(id: string): Observable<any> {
-    return this.http.get('http://127.0.0.1:8081/api/bookmarks/' + id);
+    return this.http.get(`${this.baseURL}/api/bookmarks/` + id);
   }
   getCategoryData(): Observable<any> {
-    return this.http.get('http://127.0.0.1:8081/api/bookmark/categories');
+    return this.http.get(`${this.baseURL}/api/bookmark/categories`);
   }
 
   // Update
@@ -50,21 +49,20 @@ export class MongodbService {
     href: string,
     description: string,
     category: string,
-    catname: string,
+    catname: string
   ): Observable<any> {
-    const bookmark: Bookmarkadd = {
+    const bookmark: BookmarkAdd = {
       title: title,
       href: href,
       description: description,
       category: category,
-      catname: catname
+      catname: catname,
     };
-    return this.http.put('http://127.0.0.1:8081/api/bookmarks/' + _id, bookmark);
+    return this.http.put(`${this.baseURL}/api/bookmarks/` + _id, bookmark);
   }
 
   // Delete
   deleteBookmark(id: string): Observable<any> {
-    return this.http.delete('http://127.0.0.1:8081/api/bookmarks/' + id);
+    return this.http.delete(`${this.baseURL}/api/bookmarks/` + id);
   }
-
 }

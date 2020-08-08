@@ -1,7 +1,5 @@
 <div class="page-theme app-container">
-
   <mat-toolbar color="primary">
-
     <button mat-icon-button (click)="BookmarkCategories.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -11,11 +9,9 @@
       Nest Bookmark Manager
     </span>
     <span class="toolbar-fill"></span>
-
   </mat-toolbar>
 
   <mat-sidenav-container>
-
     <mat-sidenav #BookmarkCategories>
       <app-sidebar-navigation></app-sidebar-navigation>
     </mat-sidenav>
@@ -23,7 +19,5 @@
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
-
   </mat-sidenav-container>
-
 </div>
