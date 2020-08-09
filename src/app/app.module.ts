@@ -4,6 +4,8 @@ import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+
+// Material Imports
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -21,26 +23,22 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 
+// App Routing & Services
+import { AppRoutingModule } from "./app-routing.module";
+import { MongodbService } from "./_services/mongodb.service";
+import { DataService } from "./_services/data.service";
+
 // Component Imports
 import { AppComponent } from "./app.component";
-import { BookmarkDetailsComponent } from "./bookmark-details/bookmark-details.component";
-import { BookmarkDetailsUpdateComponent } from "./bookmark-details-update/bookmark-details-update.component";
-import { BookmarkAddComponent } from "./bookmark-add/bookmark-add.component";
-import { SidebarNavigationComponent } from "./sidebar-navigation/sidebar-navigation.component";
-
-// App Routing
-import { AppRoutingModule } from "./app-routing.module";
-
-// Services
-import { MongodbService } from "./_services/mongodb.service";
-import { CategoryService } from "./_services/category.service";
+import { DetailsTableComponent } from "./details-table/details-table.component";
+import { InputFormComponent } from "./input-form/input-form.component";
+import { SidebarNavigationComponent } from "./sidebar-navigation.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookmarkDetailsComponent,
-    BookmarkDetailsUpdateComponent,
-    BookmarkAddComponent,
+    DetailsTableComponent,
+    InputFormComponent,
     SidebarNavigationComponent,
   ],
   imports: [
@@ -68,8 +66,8 @@ import { CategoryService } from "./_services/category.service";
     MatMenuModule,
     MatPaginatorModule,
   ],
-  providers: [MongodbService, CategoryService],
-  entryComponents: [BookmarkAddComponent],
+  providers: [MongodbService, DataService],
+  entryComponents: [InputFormComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

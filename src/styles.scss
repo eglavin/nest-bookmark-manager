@@ -1,17 +1,18 @@
-// Default Material Theme Import
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-// Material Custom Theme
 @import "~@angular/material/theming";
 @include mat-core();
 
-$app-primary: mat-palette($mat-red, A700);
-$app-accent: mat-palette($mat-blue);
-
-$app-theme: mat-light-theme($app-primary, $app-accent);
-
-.page-theme {
-  @include angular-material-theme($app-theme);
-}
+$app-primary: mat-palette($mat-orange, A400);
+$app-accent: mat-palette($mat-grey, 300);
+$app-warn: mat-palette($mat-red, 500);
+$app-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+  )
+);
 
 html,
 body,
@@ -21,11 +22,6 @@ app-root {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html,
 body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  @include angular-material-theme($app-theme);
 }

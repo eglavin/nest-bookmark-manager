@@ -10,8 +10,7 @@ mat-toolbar {
 }
 
 mat-card {
-  width: 90%;
-  margin: 1em auto 0 auto;
+  margin: 1em 1em 0.8em 1em;
 
   mat-card-content {
     width: 100%;
@@ -36,12 +35,18 @@ mat-card {
         color: rgb(78, 78, 78);
       }
 
-      a.link mat-icon {
-        float: right;
-        font-size: 18px;
-        width: 18px;
-        height: 18px;
-        margin-right: 10px;
+      a.link {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-decoration: none;
+
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+          margin-right: 10px;
+        }
       }
     }
   }

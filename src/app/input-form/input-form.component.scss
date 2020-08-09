@@ -1,0 +1,17 @@
+.input-card {
+  mat-card-content {
+    @media screen and (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    margin: 1.5em 1em;
+  }
+}
+mat-card-actions {
+  button {
+    margin: 0 5px;
+  }
+}
