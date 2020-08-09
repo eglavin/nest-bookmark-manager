@@ -1,5 +1,5 @@
 export interface Bookmark {
-  _id: string;
+  _id: any;
   title: string;
   href: string;
   description: string;
@@ -12,4 +12,8 @@ export interface BookmarkAdd {
   description: string;
   category: string;
   catname: string;
+}
+export interface Category {
+  _id: any;
+  name: string;
 }

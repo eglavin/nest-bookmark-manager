@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 // Imports Data Model
-import { BookmarkAdd } from "../_models/bookmark.model";
+import { BookmarkAdd } from "../app.models";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +11,7 @@ import { BookmarkAdd } from "../_models/bookmark.model";
 export class MongodbService {
   constructor(private http: HttpClient) {}
 
-  baseURL: string = "http://127.0.0.1:8081";
+  baseURL: string = "http://127.0.0.1";
 
   // Create
   addBookmark(
@@ -28,6 +28,7 @@ export class MongodbService {
       category: category,
       catname: catname,
     };
+
     return this.http.post(`${this.baseURL}/api/bookmarks`, bookmark);
   }
 
@@ -58,6 +59,7 @@ export class MongodbService {
       category: category,
       catname: catname,
     };
+
     return this.http.put(`${this.baseURL}/api/bookmarks/` + _id, bookmark);
   }
 
