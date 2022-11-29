@@ -1,9 +1,12 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+require("dotenv").config();
+
+const app = express();
 
 // CORS Error Fix
 app.use(
@@ -17,23 +20,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Mongoose DB Connection
-const username = "jV5H6Gv8gEcs9Fwy";
-const password = "bAxrRtY8mrEZv59sW27a";
-const MLabURL = `mongodb://${username}:${password}@ds159073.mlab.com:59073/drqp-nest`;
-mongoose.connect(MLabURL, {
+const username = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
+const dbURL = `mongodb://${username}:${password}@127.0.0.1:27017/nest?authSource=admin`;
+
+mongoose.connect(dbURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
 
 // DB Test
-var dbConnectionTest = mongoose.connection;
-dbConnectionTest.on(
-  "error",
-  console.error.bind(console, "MLAB Connection Error")
-);
-dbConnectionTest.once("open", () => {
-  console.log("MLAB Connected");
+mongoose.connection.on("error", (error) => {
+  console.error("DB Connection Error", error);
+});
+mongoose.connection.once("open", () => {
+  console.log("DB Connected");
 });
 
 // Schema Definition
