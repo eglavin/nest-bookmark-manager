@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DataService {
   private bookmarksData = new BehaviorSubject([]);
@@ -14,12 +14,12 @@ export class DataService {
   private categoryData = new BehaviorSubject([]);
   categories = this.categoryData.asObservable();
 
-  private categoryFilter = new BehaviorSubject("");
+  private categoryFilter = new BehaviorSubject('');
   activeFilter = this.categoryFilter.asObservable();
 
   constructor() {}
 
-  updateBookmarks = (data) => {
+  updateBookmarks = (data: any) => {
     this.bookmarksData.next(data);
   };
 
@@ -27,7 +27,7 @@ export class DataService {
     this.bookmarksUpdate.next(state);
   };
 
-  updateCategories = (data) => {
+  updateCategories = (data: any) => {
     this.categoryData.next(data);
   };
 

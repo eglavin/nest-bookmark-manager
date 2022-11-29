@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
-import { InputFormComponent } from "./input-form/input-form.component";
-import { MongodbService } from "./_services/mongodb.service";
-import { DataService } from "./_services/data.service";
+import { InputFormComponent } from './input-form/input-form.component';
+import { MongodbService } from './_services/mongodb.service';
+import { DataService } from './_services/data.service';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: `
     <mat-sidenav-container class="app-container">
       <mat-sidenav #BookmarkCategories class="side-nav">
@@ -26,9 +26,7 @@ import { DataService } from "./_services/data.service";
 
             <span class="toolbar-fill"></span>
 
-            <span>
-              Nest Bookmark Manager
-            </span>
+            <span> Nest Bookmark Manager </span>
 
             <span class="toolbar-fill"></span>
 
@@ -94,7 +92,7 @@ export class AppComponent implements OnInit {
 
   handleOpenAddBookmark = () => {
     this.bottomSheet.open(InputFormComponent, {
-      data: { id: null, type: "Add" },
+      data: { id: null, type: 'Add' },
     });
   };
 

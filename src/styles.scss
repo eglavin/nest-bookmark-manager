@@ -1,18 +1,24 @@
-@import "~@angular/material/theming";
-@include mat-core();
+@use "@angular/material" as mat;
 
-$app-primary: mat-palette($mat-orange, A400);
-$app-accent: mat-palette($mat-grey, 300);
-$app-warn: mat-palette($mat-red, 500);
-$app-theme: mat-light-theme(
+@include mat.core();
+
+$app-primary: mat.define-palette(mat.$orange-palette, A400);
+$app-accent: mat.define-palette(mat.$grey-palette, 300);
+$app-warn: mat.define-palette(mat.$red-palette, 500);
+
+$app-theme: mat.define-light-theme(
   (
     color: (
       primary: $app-primary,
       accent: $app-accent,
       warn: $app-warn,
     ),
+    typography: mat.define-typography-config(),
+    density: 0,
   )
 );
+
+@include mat.core-theme($app-theme);
 
 html,
 body,
@@ -20,8 +26,4 @@ app-root {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-body {
-  @include angular-material-theme($app-theme);
 }

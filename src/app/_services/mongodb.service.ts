@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 // Imports Data Model
-import { BookmarkAdd } from "../app.models";
+import { BookmarkAdd } from '../app.models';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MongodbService {
   constructor(private http: HttpClient) {}
 
-  baseURL: string = "http://127.0.0.1";
+  baseURL: string = 'http://127.0.0.1';
 
   // Create
   addBookmark(

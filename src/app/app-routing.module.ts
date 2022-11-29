@@ -1,17 +1,17 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { DetailsTableComponent } from "./details-table/details-table.component";
+import { DetailsTableComponent } from './details-table/details-table.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: DetailsTableComponent,
-    pathMatch: "full",
+    pathMatch: 'full',
   },
   {
-    path: "**",
-    redirectTo: "",
+    path: '**',
+    redirectTo: '',
   },
 ];
 

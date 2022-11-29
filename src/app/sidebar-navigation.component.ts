@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
-import { DataService } from "./_services/data.service";
-import { Category } from "./app.models";
+import { DataService } from './_services/data.service';
+import { Category } from './app.models';
 
 @Component({
-  selector: "app-sidebar-navigation",
+  selector: 'app-sidebar-navigation',
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z3">
       <span>Categories</span>
@@ -21,7 +21,7 @@ import { Category } from "./app.models";
   `,
 })
 export class SidebarNavigationComponent implements OnInit {
-  categoryData: Category[];
+  categoryData: Category[] = [];
 
   constructor(private data: DataService) {}
 

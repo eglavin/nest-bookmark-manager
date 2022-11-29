@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatTableDataSource } from "@angular/material/table";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
-import { InputFormComponent } from "../input-form/input-form.component";
-import { MongodbService } from "../_services/mongodb.service";
-import { DataService } from "../_services/data.service";
+import { InputFormComponent } from '../input-form/input-form.component';
+import { MongodbService } from '../_services/mongodb.service';
+import { DataService } from '../_services/data.service';
 
 @Component({
-  selector: "app-details-table",
-  templateUrl: "./details-table.component.html",
-  styleUrls: ["./details-table.component.scss"],
+  selector: 'app-details-table',
+  templateUrl: './details-table.component.html',
+  styleUrls: ['./details-table.component.scss'],
 })
 export class DetailsTableComponent implements OnInit {
   constructor(
@@ -19,21 +19,22 @@ export class DetailsTableComponent implements OnInit {
     private bottomSheet: MatBottomSheet
   ) {}
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = [
-    "title",
-    "href",
-    "description",
-    "category",
-    "options",
+    'title',
+    'href',
+    'description',
+    'category',
+    'options',
   ];
-  filterValue: String = "";
+  filterValue: string = '';
   tableData: any = [];
 
   editBookmark = (id: string) => {
     this.bottomSheet.open(InputFormComponent, {
-      data: { id: id, type: "Edit" },
+      data: { id: id, type: 'Edit' },
     });
   };
 
@@ -46,19 +47,29 @@ export class DetailsTableComponent implements OnInit {
     });
   };
 
-  setTableData = (data) => {
+  setTableData = (data: any) => {
     this.tableData = new MatTableDataSource(data);
     this.tableData.paginator = this.paginator;
   };
 
-  applyFilter = (filterBy: string) => {
-    this.filterValue = filterBy;
-    this.tableData.filter = filterBy;
+  setFilterValue = (value: string) => {
+    this.filterValue = value;
+    this.tableData.filter = value;
   };
 
-  reloadData = (state) => {
+  applyFilter = (event: KeyboardEvent) => {
+    const filterValue = (event.target as HTMLInputElement).value;
+
+    this.setFilterValue(filterValue);
+  };
+
+  clearFilter = () => {
+    this.setFilterValue('');
+  };
+
+  reloadData = (state: boolean) => {
     if (state) {
-      this.applyFilter("");
+      this.setFilterValue('');
       this.data.setUpdate(false);
 
       // this.tableData.paginator._pageIndex = 0;
@@ -74,7 +85,7 @@ export class DetailsTableComponent implements OnInit {
     });
 
     this.data.activeFilter.subscribe((data) => {
-      this.applyFilter(data);
+      this.setFilterValue(data);
     });
 
     this.data.updateData.subscribe((state) => {

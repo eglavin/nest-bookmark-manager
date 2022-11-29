@@ -1,24 +1,22 @@
 <mat-card>
   <mat-card-content>
     <mat-form-field>
-      <mat-label>
-        Filter
-      </mat-label>
+      <mat-label>Filter</mat-label>
 
       <input
         matInput
         type="text"
-        (keyup)="applyFilter($event.target.value)"
-        [(value)]="filterValue"
+        [value]="filterValue"
+        (keyup)="applyFilter($event)"
       />
 
       <button
-        (click)="applyFilter('')"
-        *ngIf="filterValue"
         mat-button
         matSuffix
         mat-icon-button
-        aria-label="Clear Filter Input"
+        aria-label="Clear Filter Value"
+        (click)="clearFilter()"
+        *ngIf="filterValue"
       >
         <mat-icon>clear</mat-icon>
       </button>
@@ -27,9 +25,7 @@
     <table mat-table [dataSource]="tableData" class="mat-elevation-z1">
       <!-- Name -->
       <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>
-          Name.
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Name.</th>
 
         <td mat-cell *matCellDef="let row">
           {{ row.title }}
@@ -38,9 +34,7 @@
 
       <!-- Link -->
       <ng-container matColumnDef="href">
-        <th mat-header-cell *matHeaderCellDef>
-          Link.
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Link.</th>
 
         <td mat-cell *matCellDef="let row" matRipple>
           <a href="{{ row.href }}" class="link">
@@ -52,9 +46,7 @@
 
       <!-- Description -->
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>
-          Description.
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Description.</th>
 
         <td mat-cell *matCellDef="let row">
           {{ row.description }}
@@ -63,9 +55,7 @@
 
       <!-- Category -->
       <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>
-          Category.
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Category.</th>
 
         <td mat-cell *matCellDef="let row">
           {{ row.catname }}
@@ -74,9 +64,7 @@
 
       <!-- Edit/Delete Buttons -->
       <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef>
-          Menu.
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Menu.</th>
 
         <td mat-cell *matCellDef="let row">
           <button

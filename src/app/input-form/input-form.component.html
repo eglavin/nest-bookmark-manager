@@ -1,8 +1,6 @@
 <mat-card class="input-card">
   <mat-card-header *ngIf="inputType === 'Add'">
-    <mat-card-title>
-      Add New Bookmark
-    </mat-card-title>
+    <mat-card-title>Add New Bookmark</mat-card-title>
 
     <mat-card-subtitle>
       Fill out the form below to add a new bookmark.
@@ -10,9 +8,7 @@
   </mat-card-header>
 
   <mat-card-header *ngIf="inputType === 'Edit'">
-    <mat-card-title>
-      Edit Bookmark
-    </mat-card-title>
+    <mat-card-title>Edit Bookmark</mat-card-title>
 
     <mat-card-subtitle>
       Fill out the form below to edit the selected bookmark.
@@ -51,9 +47,7 @@
           required
         />
 
-        <mat-error *ngIf="href.invalid">
-          Please enter a URL.
-        </mat-error>
+        <mat-error *ngIf="href.invalid">Please enter a URL.</mat-error>
       </mat-form-field>
 
       <mat-form-field>
