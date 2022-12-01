@@ -70,8 +70,7 @@ export class InputFormComponent implements OnInit {
               form.value.title,
               form.value.href,
               form.value.description,
-              form.value.category,
-              categoryName.name
+              form.value.category
             )
             .subscribe(() => {
               this.bookmarks.getBookmarks();
@@ -88,8 +87,7 @@ export class InputFormComponent implements OnInit {
               form.value.title,
               form.value.href,
               form.value.description,
-              form.value.category,
-              categoryName.name
+              form.value.category
             )
             .subscribe(() => {
               this.bookmarks.getBookmarks();

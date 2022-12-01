@@ -5,8 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { InputFormComponent } from '../input-form/input-form.component';
 import { BookmarksService } from '../../services/bookmark.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { FilterService } from '../../services/filter.service';
 import type { Bookmark } from '../../models/bookmark.model';
+import type { Category } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-bookmarks-table',
@@ -22,11 +24,14 @@ export class BookmarksTableComponent implements OnInit {
     [] as Bookmark[]
   );
 
+  public categoriesData: Category[] = [];
+
   public activeFilterValue = '';
 
   constructor(
     private bottomSheet: MatBottomSheet,
     private bookmarks: BookmarksService,
+    private categories: CategoryService,
     private filter: FilterService
   ) {}
 
@@ -36,10 +41,21 @@ export class BookmarksTableComponent implements OnInit {
       this.tableData.paginator = this.paginator;
     });
 
+    this.categories.categories$.subscribe((data) => {
+      this.categoriesData = data;
+    });
+
     this.filter.activeFilter$.subscribe((data) => {
       this.activeFilterValue = data;
       this.tableData.filter = data;
     });
+  }
+
+  public getCategoryName(bookmark: Bookmark) {
+    return (
+      this.categoriesData.find((category) => category._id === bookmark.category)
+        ?.name || bookmark.category
+    );
   }
 
   public applyFilter(event: KeyboardEvent) {

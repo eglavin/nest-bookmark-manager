@@ -35,8 +35,7 @@ export class BookmarksService {
     title: string,
     href: string,
     description: string,
-    category: string,
-    catname: string
+    category: string
   ) {
     const bookmark: NewBookmark = {
       title: title,
@@ -53,8 +52,7 @@ export class BookmarksService {
     title: string,
     href: string,
     description: string,
-    category: string,
-    catname: string
+    category: string
   ) {
     const bookmark: NewBookmark = {
       title: title,
