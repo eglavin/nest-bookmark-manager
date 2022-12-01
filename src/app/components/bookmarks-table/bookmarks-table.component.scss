@@ -1,0 +1,55 @@
+mat-card {
+  height: 100%;
+  margin: 0;
+  display: grid;
+  justify-items: stretch;
+  align-items: stretch;
+  border-radius: 0;
+
+  mat-card-content {
+    padding: 28px 48px 0;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+
+    mat-form-field {
+      width: 100%;
+
+      input {
+        width: 100%;
+        min-height: 30px;
+        text-align: left;
+        font-size: 1.2em;
+      }
+    }
+
+    div.table-container {
+      table {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 12px;
+
+        th {
+          font-size: 1.2em;
+          color: rgb(78, 78, 78);
+        }
+
+        a.link {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          text-decoration: none;
+
+          mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

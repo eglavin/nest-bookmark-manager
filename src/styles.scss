@@ -18,12 +18,19 @@ $app-theme: mat.define-light-theme(
   )
 );
 
-@include mat.core-theme($app-theme);
-
-html,
-body,
-app-root {
-  height: 100%;
+html {
+  height: 100vh;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+body,
+#root {
+  min-height: 100%;
+  display: grid;
+  justify-items: stretch;
+  align-items: stretch;
+  margin: 0;
+  background-color: #e0e0e0;
+}
+
+@include mat.core-theme($app-theme);

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <span>Categories</span>
+</mat-toolbar>
+
+<mat-nav-list>
+  <mat-list-item
+    *ngFor="let category of categoryData"
+    (click)="filterBookmarks(category)"
+  >
+    <span
+      [class.active]="
+        category.name === activeFilterValue ||
+        (category._id === '__all__' && activeFilterValue === '')
+      "
+    >
+      {{ category.name }}
+    </span>
+  </mat-list-item>
+</mat-nav-list>

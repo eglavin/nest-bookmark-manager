@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <mat-toolbar-row>
+    <span class="menu-button">
+      <button
+        mat-icon-button
+        aria-label="Open Category Menu"
+        (click)="sidenavTarget.toggle()"
+      >
+        <mat-icon aria-hidden="false">menu</mat-icon>
+      </button>
+    </span>
+
+    <span class="title">Nest Bookmark Manager</span>
+
+    <span class="actions">
+      <button mat-icon-button aria-label="Refresh Data" (click)="reloadData()">
+        <mat-icon aria-hidden="false">refresh</mat-icon>
+      </button>
+
+      <button
+        mat-stroked-button
+        aria-label="Open Insert Bookmark Dialogue"
+        (click)="openAddBookmarkBottomSheet()"
+        class="add-new-bookmark-button"
+      >
+        <mat-icon>add</mat-icon> Add Bookmark
+      </button>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>

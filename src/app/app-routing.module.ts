@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
-import { DetailsTableComponent } from './details-table/details-table.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: DetailsTableComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
-];
+import { BookmarksTableComponent } from './components/bookmarks-table/bookmarks-table.component';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot([
+      {
+        path: '',
+        title: 'Nest Bookmark Manager',
+        component: BookmarksTableComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      },
+    ]),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

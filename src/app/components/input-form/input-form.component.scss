@@ -1,0 +1,37 @@
+mat-card {
+  margin: 1rem 0;
+
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+
+    mat-card-actions {
+      padding: 0;
+    }
+  }
+
+  mat-card-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 12px;
+
+    @media screen and (max-width: 950px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 750px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+    }
+  }
+
+  mat-card-actions {
+    button {
+      margin: 0 5px;
+    }
+  }
+}
