@@ -33,4 +33,4 @@ body,
   background-color: #e0e0e0;
 }
 
-@include mat.core-theme($app-theme);
+@include mat.all-component-themes($app-theme);
