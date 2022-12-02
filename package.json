@@ -3,11 +3,12 @@
   "version": "3.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 127.0.0.1",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "server:start": "nodemon ./backend/index.js",
+    "start": "npm-run-all --parallel be:start fe:start",
+    "fe:start": "ng serve --host 127.0.0.1",
+    "fe:build": "ng build",
+    "fe:watch": "ng build --watch --configuration development",
+    "fe:test": "ng test",
+    "be:start": "nodemon ./backend/index.js",
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose stop",
     "db:rm": "docker-compose rm"
@@ -30,6 +31,7 @@
     "mongoose": "^5.7.13",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
