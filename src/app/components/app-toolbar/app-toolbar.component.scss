@@ -1,0 +1,25 @@
+mat-toolbar {
+  z-index: 2;
+  position: sticky;
+
+  mat-toolbar-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+
+    span.title {
+      justify-self: center;
+    }
+
+    span.actions {
+      justify-self: flex-end;
+      display: flex;
+      align-items: center;
+
+      button.add-new-bookmark-button {
+        color: inherit;
+      }
+    }
+  }
+}

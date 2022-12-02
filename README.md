@@ -2,48 +2,34 @@
 
 ## Data Representation and Querying Project
 
-###### Galway Mayo Institute of Technology 2018
+> Galway Mayo Institute of Technology 2018
 
-### Installation:
+Nest Bookmark Manager was developed as a fourth year college project demonstrating the use of both frontend and backend layers with persistence to a Mongo database. Although this was originally developed for a module in college, I now use this project to keep up to date with new Angular versions.
 
-#### Prerequisites
+## Local Development
 
-- Git cli
-- Node package manager
-  > Note: AngularCLI is unnecessary as `npm i` will install the version used within the project
+To run the project locally install project dependencies using `npm ci` and then start the project using `npm start`.
 
-**To run the project front-end use the following commands**
+The node server assumes there's is a local mongo database instance available at the following port `127.0.0.1:27017`, which can be setup using docker-compose by using the `npm run db:start` command.
 
-```
-git clone https://github.com/GlavinsGadgets/GMIT-Y4-DRQ-Nest
-cd GMIT-Y4-DRQ-Project
-npm i
-npm start
-```
+### Setup Database
 
-**To start the Server backend please open another Terminal and run**
+To set the database username and password create a copy of the `.env.example` file called `.env` and update the following values.
 
-```
-cd GMIT-Y4-DRQ-Project/Server/
-node serve.js
+```sh
+DB_USERNAME=""
+DB_PASSWORD=""
 ```
 
-After running the previous commands you will be able to open a browser window and view the site at the link [http://localhost:4200/](http://localhost:4200/)
+### Seed Database
 
-### Development Notes
+You can seed your Mongo db instance using the `mongoimport` utility from the [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools) with the following command. Example data can be found in the `./backend/data` folder.
 
-> Packages Used
-
-- @angular/material
-- material-icons
-- express
-- mongoose
-- cors
-
-> Browser Used during development
-
-- Mozilla Firefox
-
-### Issues
-
-Find any problems with the app feel free to send in a report in the Issues tab.
+```ps1
+mongoimport `
+  --uri mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>/<DATABASE> `
+  --collection <COLLECTION> `
+  --type json `
+  --jsonArray `
+  --file <FILENAME>
+```
