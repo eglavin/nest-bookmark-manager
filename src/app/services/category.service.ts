@@ -17,7 +17,7 @@ export class CategoryService {
 
   public getCategories() {
     const apiResponse = this.http.get(
-      `${environment.hostURL}/api/bookmark/categories`
+      `${environment.hostURL}/api/categories`
     ) as Observable<Category[]>;
 
     apiResponse.subscribe((data) => {

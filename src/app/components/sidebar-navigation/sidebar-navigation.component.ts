@@ -28,7 +28,7 @@ export class SidebarNavigationComponent implements OnInit {
     this.categories.categories$.subscribe((data) => {
       this.categoryData = [
         {
-          _id: 'all',
+          _id: '__all__',
           name: 'All',
         },
         ...data,
