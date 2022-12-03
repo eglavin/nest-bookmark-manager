@@ -23,7 +23,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { BookmarksService } from './services/bookmark.service';
 import { CategoryService } from './services/category.service';
-import { FilterService } from './services/filter.service';
 
 import { AppComponent } from './app.component';
 import { AppToolbarComponent } from './components/app-toolbar/app-toolbar.component';
@@ -62,7 +61,7 @@ import { InputFormComponent } from './components/input-form/input-form.component
     MatMenuModule,
     MatPaginatorModule,
   ],
-  providers: [BookmarksService, CategoryService, FilterService],
+  providers: [BookmarksService, CategoryService],
   entryComponents: [InputFormComponent],
   bootstrap: [AppComponent],
 })

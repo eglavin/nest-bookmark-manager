@@ -10,25 +10,31 @@ import type { Bookmark, NewBookmark } from '../models/bookmark.model';
 })
 export class BookmarksService {
   private _bookmarks$ = new BehaviorSubject<Bookmark[]>([]);
+  private _categoryFilter$ = new BehaviorSubject('');
 
   constructor(private http: HttpClient) {}
 
   public bookmarks$ = this._bookmarks$.asObservable();
 
+  public categoryFilter$ = this._categoryFilter$.asObservable();
+  public setCategoryFilter$(categoryId: string) {
+    this._categoryFilter$.next(categoryId);
+
+    this.getBookmarks();
+  }
+
   public getBookmarks() {
     const apiResponse = this.http.get(
-      `${environment.hostURL}/api/bookmarks`
+      `${environment.hostURL}/api/bookmarks${
+        this._categoryFilter$.value
+          ? `/byCategory?id=${this._categoryFilter$.value}`
+          : ''
+      }`
     ) as Observable<Bookmark[]>;
 
     apiResponse.subscribe((data) => {
       this._bookmarks$.next(data);
     });
-  }
-
-  public getBookmark(id: string) {
-    return this.http.get(
-      `${environment.hostURL}/api/bookmarks/${id}`
-    ) as Observable<Bookmark[]>;
   }
 
   public addBookmark(
@@ -67,9 +73,9 @@ export class BookmarksService {
     );
   }
 
-  public deleteBookmark(id: string) {
+  public deleteBookmark(_id: string) {
     const apiResponse = this.http.delete(
-      `${environment.hostURL}/api/bookmarks/` + id
+      `${environment.hostURL}/api/bookmarks/${_id}`
     );
 
     apiResponse.subscribe(() => {
