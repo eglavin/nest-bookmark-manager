@@ -1,70 +1,106 @@
 const express = require("express");
 
-const bookmarks = express.Router();
+const routes = express.Router();
 
-bookmarks.get("/", (req, res) => {
-  req.context.BookmarkData.find((err, bookmarks) => {
-    if (err) {
-      return res.json(err);
-    }
+routes.get("/", async function (req, res) {
+  try {
+    const bookmarks = await req.context.BookmarkData.find({}).exec();
 
     return res.json(bookmarks);
-  });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error loading bookmarks",
+      error,
+    });
+  }
 });
 
-bookmarks.get("/:_id", (req, res) => {
-  req.context.BookmarkData.find({ _id: req.params._id }, (err, bookmark) => {
-    if (err) {
-      return res.json(err);
+routes.get("/byCategory", async function (req, res) {
+  try {
+    const bookmarks = await req.context.BookmarkData.find(
+      req.query["id"] ? { category: req.query["id"] } : {} // If category is null, return all.
+    ).exec();
+
+    return res.json(bookmarks);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error loading bookmarks",
+      error,
+    });
+  }
+});
+
+routes.get("/:_id", async function (req, res) {
+  try {
+    const bookmark = await req.context.BookmarkData.findById(
+      req.params._id
+    ).exec();
+
+    if (!bookmark) {
+      return res.json({
+        message: "Bookmark not found",
+      });
     }
 
     return res.json(bookmark);
-  });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error loading bookmark",
+      error,
+    });
+  }
 });
 
-bookmarks.post("/", (req, res) => {
+routes.post("/", async function (req, res) {
   try {
-    req.context.BookmarkData.create({
+    const newBookmark = await req.context.BookmarkData.create({
       title: req.body.title,
       href: req.body.href,
       description: req.body.description,
       category: req.body.category,
     });
 
-    console.log(`Inserted: ${req.body.title}`);
-    return res.json({ response: `Inserted: ${req.body.title}` });
+    return res.json(newBookmark);
   } catch (error) {
-    console.log(`Insert Error: ${req.body.title}`);
-    return res.json({ response: `Insert Error: ${req.body.title}` });
+    return res.status(500).json({
+      message: `Unable to create "${req.body?.title || ""}"`,
+      error,
+    });
   }
 });
 
-bookmarks.put("/:id", (req, res) => {
-  req.context.BookmarkData.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    (err, post) => {
-      if (err) {
-        console.log(`Update Error: ${req.body.title}`);
-        return res.json(err);
+routes.put("/:_id", async function (req, res) {
+  try {
+    const updatedBookmark = await req.context.BookmarkData.findByIdAndUpdate(
+      req.params._id,
+      req.body,
+      {
+        new: true,
       }
+    );
 
-      console.log(`Updated: ${req.body.title}`);
-      return res.json({ response: `Updated: ${req.body.title}` });
-    }
-  );
+    return res.json(updatedBookmark);
+  } catch (error) {
+    return res.status(500).json({
+      message: `Unable to update "${req.body?.title || ""}"`,
+      error,
+    });
+  }
 });
 
-bookmarks.delete("/:id", (req, res) => {
-  req.context.BookmarkData.deleteOne({ _id: req.params.id }, (err) => {
-    if (err) {
-      console.log(`Delete Error: ${req.params.id}`);
-      return res.json(err);
-    }
+routes.delete("/:_id", async function (req, res) {
+  try {
+    const deletedBookmark = await req.context.BookmarkData.deleteOne({
+      _id: req.params._id,
+    });
 
-    console.log(`Deleted: ${req.params.id}`);
-    return res.json({ response: `Deleted: ${req.params.id}` });
-  });
+    return res.json(deletedBookmark);
+  } catch (error) {
+    return res.status(500).json({
+      message: `Unable to delete "${req.body?.title || ""}"`,
+      error,
+    });
+  }
 });
 
-module.exports = { bookmarks };
+module.exports = { bookmarks: routes };
