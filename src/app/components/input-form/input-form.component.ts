@@ -27,7 +27,9 @@ export class InputFormComponent implements OnInit {
     private categories: CategoryService
   ) {}
 
-  public inputType = this.propData.type;
+  public isUpdate = this.propData.type.trim().toLowerCase() === 'edit';
+  public allowSave = true;
+
   public bookmarksData: NewBookmark | Bookmark = {
     title: '',
     href: '',
@@ -35,68 +37,65 @@ export class InputFormComponent implements OnInit {
     category: '',
   };
 
+  public closeBottomSheet() {
+    this._bottomSheetRef.dismiss();
+  }
+
   ngOnInit() {
     this.categories.categories$.subscribe((data) => {
       this.categoriesData = data;
     });
 
-    if (this.propData.type === 'Edit') {
+    if (this.isUpdate) {
       if (this.propData.bookmark) {
         this.bookmarksData = {
           ...this.bookmarksData,
           ...this.propData.bookmark,
         };
-      } else {
-        this._bottomSheetRef.dismiss();
+
         return;
       }
+
+      this.closeBottomSheet();
     }
   }
 
-  public closeCard() {
-    this._bottomSheetRef.dismiss();
-  }
+  public async submitForm(form: NgForm) {
+    this.allowSave = false;
 
-  public submitForm(form: NgForm) {
-    const categoryName = this.categoriesData.find(
-      (category) => category._id === form.value.category
-    );
-
-    if (categoryName?.name) {
-      switch (this.inputType) {
-        case 'Add': {
-          this.bookmarks
-            .addBookmark(
-              form.value.title,
-              form.value.href,
-              form.value.description,
-              form.value.category
-            )
-            .subscribe(() => {
-              this.bookmarks.getBookmarks();
-
-              this._bottomSheetRef.dismiss();
-            });
-          break;
+    try {
+      if (this.isUpdate) {
+        if (!this.propData.bookmark?._id) {
+          throw new Error('Missing bookmark id');
         }
 
-        case 'Edit': {
-          this.bookmarks
-            .updateBookmark(
-              this.propData.bookmark?._id!,
-              form.value.title,
-              form.value.href,
-              form.value.description,
-              form.value.category
-            )
-            .subscribe(() => {
-              this.bookmarks.getBookmarks();
+        const saved = await this.bookmarks.updateBookmark({
+          _id: this.propData.bookmark._id,
+          href: form.value.href,
+          title: form.value.title,
+          description: form.value.description,
+          category: form.value.category,
+        });
 
-              this._bottomSheetRef.dismiss();
-            });
-          break;
+        if (saved) {
+          this.closeBottomSheet();
+        }
+      } else {
+        const saved = await this.bookmarks.addBookmark({
+          href: form.value.href,
+          title: form.value.title,
+          description: form.value.description,
+          category: form.value.category,
+        });
+
+        if (saved) {
+          this.closeBottomSheet();
         }
       }
+    } catch (error) {
+      console.error(error);
     }
+
+    this.allowSave = true;
   }
 }
