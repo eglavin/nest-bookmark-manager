@@ -1,13 +1,10 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title *ngIf="inputType === 'Edit'">Edit Bookmark</mat-card-title>
-
-    <mat-card-title *ngIf="inputType === 'Add'"
-      >Add New Bookmark</mat-card-title
-    >
+    <mat-card-title *ngIf="isUpdate">Update Bookmark</mat-card-title>
+    <mat-card-title *ngIf="!isUpdate">Add Bookmark</mat-card-title>
 
     <mat-card-actions align="end">
-      <button mat-icon-button aria-label="Close" (click)="closeCard()">
+      <button mat-icon-button aria-label="Close" (click)="closeBottomSheet()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-card-actions>
@@ -75,7 +72,12 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" type="submit">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="formData.form.invalid || allowSave === false"
+      >
         Save Bookmark
       </button>
 

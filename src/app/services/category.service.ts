@@ -16,11 +16,11 @@ export class CategoryService {
   public categories$ = this._categories$.asObservable();
 
   public getCategories() {
-    const apiResponse = this.http.get(
+    const apiResponse$ = this.http.get(
       `${environment.hostURL}/api/categories`
     ) as Observable<Category[]>;
 
-    apiResponse.subscribe((data) => {
+    apiResponse$.subscribe((data) => {
       this._categories$.next(data);
     });
   }

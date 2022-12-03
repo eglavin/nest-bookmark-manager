@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { InputFormComponent } from '../input-form/input-form.component';
 import { BookmarksService } from '../../services/bookmark.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { FilterService } from '../../services/filter.service';
 import type { Bookmark } from '../../models/bookmark.model';
 import type { Category } from 'src/app/models/category.model';
 
@@ -31,8 +30,7 @@ export class BookmarksTableComponent implements OnInit {
   constructor(
     private bottomSheet: MatBottomSheet,
     private bookmarks: BookmarksService,
-    private categories: CategoryService,
-    private filter: FilterService
+    private categories: CategoryService
   ) {}
 
   ngOnInit() {
@@ -43,11 +41,6 @@ export class BookmarksTableComponent implements OnInit {
 
     this.categories.categories$.subscribe((data) => {
       this.categoriesData = data;
-    });
-
-    this.filter.activeFilter$.subscribe((data) => {
-      this.activeFilterValue = data;
-      this.tableData.filter = data;
     });
   }
 
@@ -60,11 +53,14 @@ export class BookmarksTableComponent implements OnInit {
 
   public applyFilter(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.filter.setActiveFilter$(filterValue);
+
+    this.activeFilterValue = filterValue;
+    this.tableData.filter = filterValue;
   }
 
   public clearFilter() {
-    this.filter.setActiveFilter$('');
+    this.activeFilterValue = '';
+    this.tableData.filter = '';
   }
 
   public editBookmark(bookmark: Bookmark) {

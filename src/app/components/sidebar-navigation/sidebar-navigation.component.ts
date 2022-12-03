@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BookmarksService } from 'src/app/services/bookmark.service';
 import { CategoryService } from '../../services/category.service';
-import { FilterService } from '../../services/filter.service';
 import type { Category } from '../../models/category.model';
 
 @Component({
@@ -20,8 +20,8 @@ export class SidebarNavigationComponent implements OnInit {
   public activeFilterValue = '';
 
   constructor(
-    private categories: CategoryService,
-    private filter: FilterService
+    private bookmarks: BookmarksService,
+    private categories: CategoryService
   ) {}
 
   ngOnInit() {
@@ -35,14 +35,14 @@ export class SidebarNavigationComponent implements OnInit {
       ];
     });
 
-    this.filter.activeFilter$.subscribe((value) => {
+    this.bookmarks.categoryFilter$.subscribe((value) => {
       this.activeFilterValue = value;
     });
   }
 
   public filterBookmarks(category: Category) {
-    this.filter.setActiveFilter$(
-      category._id !== '__all__' ? category.name : ''
+    this.bookmarks.setCategoryFilter$(
+      category._id !== '__all__' ? category._id : ''
     );
   }
 }

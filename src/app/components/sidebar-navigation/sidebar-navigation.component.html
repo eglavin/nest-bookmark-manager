@@ -9,7 +9,7 @@
   >
     <span
       [class.active]="
-        category.name === activeFilterValue ||
+        category._id === activeFilterValue ||
         (category._id === '__all__' && activeFilterValue === '')
       "
     >
