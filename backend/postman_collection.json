@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "c4373673-aea4-4861-8b27-f212b92eaead",
+		"name": "Nest Bookmarks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10663985"
+	},
+	"item": [
+		{
+			"name": "GetBookmarks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookmarksByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks/byCategory?id=6386903a295b14295ef824fa",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks",
+						"byCategory"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6386903a295b14295ef824fa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookmark",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks/638ab061080d3061f8ebdaa4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks",
+						"638ab061080d3061f8ebdaa4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Bookmark",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Speed Test\",\r\n    \"href\": \"https://speedtest.net/hello\",\r\n    \"description\": \"Internet Speed Testing Tool\",\r\n    \"category\": \"638690ba295b14295ef82500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Bookmark",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"638ab061080d3061f8ebdaa4\",\r\n    \"title\": \"Netflix Fast\",\r\n    \"href\": \"https://fast.com\",\r\n    \"description\": \"Internet Speed Testing By Netflix\",\r\n    \"category\": \"638690ba295b14295ef82500\",\r\n    \"__v\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks/638ab061080d3061f8ebdaa4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks",
+						"638ab061080d3061f8ebdaa4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Bookmark",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Speed Test\",\r\n    \"href\": \"https://speedtest.net/hello\",\r\n    \"description\": \"Internet Speed Testing Tooling\",\r\n    \"category\": \"638690ba295b14295ef82500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01/api/bookmarks/638ab061080d3061f8ebdaa4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"bookmarks",
+						"638ab061080d3061f8ebdaa4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01/api/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
