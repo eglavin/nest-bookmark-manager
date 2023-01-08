@@ -27,7 +27,7 @@ You can seed your Mongo db instance using the `mongoimport` utility from the [Mo
 
 ```ps1
 mongoimport `
-  --uri mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>/<DATABASE> `
+  --uri mongodb://<USERNAME>:<PASSWORD>@<CLUSTER_NAME>/<DATABASE> `
   --collection <COLLECTION> `
   --type json `
   --jsonArray `
